@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./store";
 import { Provider } from "react-redux";
+import Expenses from "./routes/expenses";
+import Invoices from "./routes/invoices";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,7 +19,14 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} >
+            <Route path="expenses" element={<Expenses />} />
+            <Route path="invoices" element={<Invoices />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );
